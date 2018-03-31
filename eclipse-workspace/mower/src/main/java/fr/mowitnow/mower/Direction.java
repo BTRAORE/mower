@@ -12,7 +12,7 @@ public enum Direction implements DirectionChanger {
 	N{
 		@Override
 		public Direction left() {
-			return O;
+			return W;
 		}
 
 		@Override
@@ -28,7 +28,7 @@ public enum Direction implements DirectionChanger {
 
 		@Override
 		public Direction right() {
-			return O;
+			return W;
 		}
 	},
 	E{
@@ -42,7 +42,7 @@ public enum Direction implements DirectionChanger {
 			return S;
 		}
 	},
-	O{
+	W{
 		@Override
 		public Direction left() {
 			return S;

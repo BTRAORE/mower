@@ -57,7 +57,7 @@ public class Mower {
 			int newX = currentPos.getX() + 1;
 			currentPos.setX(newX);
 			break;
-		case O:
+		case W:
 			newX = currentPos.getX() - 1;
 			currentPos.setX(newX);
 			break;
@@ -92,7 +92,7 @@ public class Mower {
 		int curY = currentPos.getY();
 		Direction curDirection = currentPos.getDirection();
 
-		if (curX == 0 && Direction.O.equals(curDirection)
+		if (curX == 0 && Direction.W.equals(curDirection)
 				|| curX == grass.getYLength() && Direction.E.equals(curDirection)
 				|| curY == 0 && Direction.S.equals(curDirection)
 				|| curY == grass.getYLength() && Direction.N.equals(curDirection)) {
