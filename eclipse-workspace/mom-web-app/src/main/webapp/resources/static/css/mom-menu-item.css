@@ -1,0 +1,380 @@
+@CHARSET "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+/*Strip the ul of padding and list styling*/
+ul {
+/* 	position: relative;  */
+    list-style-type:none;
+    margin:0;
+    padding:0;
+
+}
+/*Create a horizontal list with spacing*/
+li.menuItem{
+	position:relative;
+    display:inline-block;
+    float: left;
+    margin-right: 1px;
+    font-size:19px;
+/*     z-index:999; */
+    
+}
+
+.menuItem a.active{
+	background: #1c7178;
+    color:white;  
+}
+/* li.categori{ */
+/* 	position:absolute; */
+/*     display:inline-block; */
+/*     float: left; */
+/*     margin-right: -25px; */
+    
+/* } */
+ul.mom-room-menu-drop li ul li a{
+    background: #1c7178;
+    color:white;  
+/*     overflow-x: hidden; */
+    
+}
+li ul.submenu-right {
+	position:absolute;
+    display: none;
+    margin:0;
+    padding:0;
+/*     right:100%; */
+    
+/*     right:-400px; */
+    min-width:300px;;
+    background: #1c7178;
+    color:white; 
+    left:250px;
+    height: auto;
+    max-height:400px;
+    overflow-x: hidden;
+/*         z-index:700; */
+/*     width:100%; */
+}
+li ul.submenu-left {
+	position:absolute;
+    display: none;
+    margin:0;
+    padding:0;
+/*     right:100%; */
+    
+/*     right:-400px; */
+    min-width:300px;;
+    background: #1c7178;
+    color:white; 
+    right:250px;
+    height: auto;
+    max-height:400px;
+    overflow-x: hidden;
+/*         z-index:700; */
+/*     width:100%; */
+}
+ul.mom-multi-level-menu-drop li a:hover + .submenu-right, .submenu-right:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:0;
+    
+/*     overflow-x: hidden; */
+    
+}
+ul.mom-multi-level-menu-drop li a:hover + .submenu-left, .submenu-left:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:0;
+    
+/*     overflow-x: hidden; */
+    
+}
+ul.mom-multi-level-menu-drop li a:hover + .top-250, .top-250:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:250px;
+}
+ul.mom-multi-level-menu-drop li a:hover + .top-150, .top-150:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:150px;
+}
+ul.mom-multi-level-menu-drop li a:hover + .top-200, .top-200:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:200px;
+}
+ul.mom-multi-level-menu-drop li a:hover + .top-100, .top-100:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:100px;
+}
+ul.mom-multi-level-menu-drop li a:hover + .top-50, .top-50:hover{
+    background: #1c7178;
+    color:white; 
+    display:block;
+    top:50px;
+}
+.top-50{
+	position:absolute;
+	top:50px;
+}
+.top-250{
+	position:absolute;
+	top:250px;
+}
+.top-100{
+	position:absolute;
+	top:100px;
+}
+ul.mom-menu-drop li{
+    background: #1c7178;
+    color:white;  
+    
+}
+ul.mom-multi-level-menu-drop li  a{
+	 background: #1c7178;
+    color:white; 
+
+	}
+ul.mom-multi-level-menu-drop{
+	position:absolute;
+    display:block;
+    left:0;
+    min-width:260px;
+/*     height: auto; */
+/*     max-height:400px; */
+/*     overflow-x: hidden; */
+/*     z-index:800; */
+/*     right: -100px; */
+    
+/*     background: #1c7178; */
+/*     color:white;   */
+/*     overflow-x: hidden; */
+    
+}
+ul.mom-one-level-menu-drop{
+	position:absolute;
+    display:block;
+    left:0;
+    min-width:260px;
+    height: auto;
+    max-height:400px;
+    overflow-x: hidden;
+/*     z-index:800; */
+/*     right: -100px; */
+    
+/*     background: #1c7178; */
+/*     color:white;   */
+/*     overflow-x: hidden; */
+    
+}
+/* ul.mom-menu-drop{ */
+/* 	position:relative; */
+/*     display:inline-block; */
+/*     float: left; */
+/*     right: -170px; */
+/*     overflow-x: hidden; */
+    
+/* } */
+/* ul.mom-menu-drop li{ */
+/* 	position:relative; */
+/*     display:inline-block; */
+/*     float: left; */
+/*     width:33%; */
+/*     right: -150px; */
+    
+/* } */
+
+/*Style for menu links*/
+li.menuItem a {
+    display:block;
+    min-width:140px;
+    height: 50px;
+/*     text-align: center; */
+    line-height: 50px;
+/*     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    color: #1c7178;
+/*     font-size:19px; */
+    background: white;
+    text-decoration: none;
+/*     clear:both; */
+}
+li.menuItem h5{
+	text-align:center;
+}
+/*Hover state for top level links*/
+li.menuItem:hover a {
+    background: white;
+    color:#1c7178;
+}
+li.menuItem:hover a {
+    background: #1c7178;
+    color:white;
+}
+/*Style for dropdown links*/
+li.menuItem:hover ul a {
+    background: #1c7178;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+}
+li.menuItem:hover ul h5 {
+    background: #f3f3f3;
+    color: #2f3036;
+    height: 40px;
+    line-height: 40px;
+}
+/*Hover state for dropdown links*/
+li.menuItem:hover ul a:hover {
+    background: white;
+    color: #1c7178;
+}
+/*Hide dropdown links until they are needed*/
+li ul.hidden {
+	position:absolute;
+    display: none;
+    margin:0;
+    padding:0;
+    float:left;
+/*     left:0; */
+/*     width:100%; */
+}
+/*Make dropdown links vertical*/
+/* ul li li { */
+/*     display: block; */
+/*     float: none; */
+/* } */
+/** authenticated user **/
+.nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background:#fff;
+}
+.menuItem .dropdown {
+	position:absolute;
+    background:#fff;
+/*     border:1px solid #ccc; */
+    border-radius:4px;
+    width:250px;
+    color:#1c7178;
+    right:30px;
+    top:20px;    
+}
+.menuItem .dropdown-menu>li>a {
+    color:#1c7178;
+}
+.menuItem .dropdown ul.dropdown-menu {
+    border-radius:4px;
+    box-shadow:none;
+    margin-top:10px;
+    width:250px;
+}
+.menuItem .dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #1c7178;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+/*     z-index: 10; */
+}
+.menuItem .dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 14px;
+/*     z-index: 9; */
+}
+/** end authentecated **/
+.menuItem .dropdown-toggle::after {
+    display:none;
+}
+.menuItem .dropdown-menu {
+border-top:none;
+/* padding:10px; */
+height: auto;
+max-height: 350px;
+/*     max-height: 300px; */
+/*     overflow-x: hidden; */
+}
+/* #menu ul li ul li { */
+/*  display: block; */
+/*  width: 100%; */
+/* } */
+/*Prevent text wrapping*/
+li.menuItem ul li a {
+    width: auto;
+    min-width: 100px;
+    padding: 0 20px;
+}
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+    display: inline-block;;
+}
+.menuItem a.mom-item-selected, a.mom-item-selected{
+    text-decoration: none;
+/* 	padding-bottom:0px; */
+/* 	text-decoration:none; */
+	border: none;
+/* 	color:#1c7178; */
+	font-size: 19px;
+	font-weight:bolder;
+	/** colored dot line */
+	padding-bottom: 15px;
+	background-repeat: no-repeat;
+    background-position: center bottom;
+    background-image: url("../images/coloredDotLine.png");
+}
+/* ul li a:hover + .hidden, .hidden:hover { */
+/*     display: block; */
+/* } */
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #19c589;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+/*Hide checkbox*/
+/* input[type=checkbox]{ */
+/*     display: none; */
+/* } */
+/*Show menu when invisible checkbox is checked*/
+/* input[type=checkbox]:checked ~ #menu{ */
+/*     display: block; */
+/* } */
+/*Responsive Styles*/
+@media screen and (max-width : 760px){
+    /*Make dropdown links appear inline*/
+    ul {
+        position: static;
+        display: none;
+    }
+    /*Create vertical spacing*/
+    li {
+        margin-bottom: 1px;
+    }
+    /*Make all menu links full width*/
+    ul li, li a {
+        width: 100%;
+    }
+    /*Display 'show menu' link*/
+    .show-menu {
+        display:block;
+    }
+}
+body {
+    font-family: 'Nunito';font-size: 16px;
+/*     background-color: white */
+}

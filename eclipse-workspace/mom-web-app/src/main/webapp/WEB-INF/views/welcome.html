@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>MôM Welcome</title>
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https:////ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<!-- 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+<!--     <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsGridView.css" th:href="@{/resources/static/css/dealsGridView.css}"> -->
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/welcome.css" th:href="@{/resources/static/css/welcome.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+</head>
+
+<body>
+<div  layout:replace="/templates/basicHeader :: basic-header" ></div>
+<div class="content text-center" >
+<!-- 	<img src="../../../resources/static/images/momMascote-cropped2.png" th:src="@{/resources/static/images/momMascote-cropped2.png}"/> -->
+<!-- 	<p>MôM</p> -->
+	<h1 class="welcome-mess">Achetez vendez ou louez près de chez vous du matériel lié à la puériculture ou la petite enfance !</h1>
+<!-- 	<div class="welcome-message text-center"> -->
+		<form class="form-group" action="#" th:action="@{/topic}" th:object="${momUser}" method="GET" enctype="utf8">
+			<div class="search-form">
+					<input id = "cities-autocomplete" type="text" class="search-input" placeholder="&#xF002; Quelle ville ?">
+			</div>
+		</form>
+<!-- 	</div> -->
+</div >
+  <!-- Placed at the end of the document so the pages load faster -->
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdIe_qoxjhXhZebieCUyWIiyy6O0k7PkE&libraries=places&sensor=false">
+    </script>
+    <script type="text/javascript" src="../../../resources/static/js/richmarker.js" th:src="@{/resources/static/js/richmarker.js}"></script>
+    <script type="text/javascript" src="../../../resources/static/js/momMap.js" th:src="@{/resources/static/js/momMap.js}"></script>
+</body>
+</html>

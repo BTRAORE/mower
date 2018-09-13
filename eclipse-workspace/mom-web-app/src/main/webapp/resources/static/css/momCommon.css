@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+/* .card-title { */
+/*   position: relative; */
+/* } */
+/*   .accordion .card-header:after { */
+/*     font-family: 'FontAwesome';   */
+/*     content: "\f107"; */
+/*     float: right;  */
+/* } */
+/* .accordion .card-header.collapsed:after { */
+/*     symbol for "collapsed" panels */
+/*     content: "\f106";  */
+/* } */
+/* .card-title::after { */
+/* 	content: "\f107"; */
+/* 	color: #333; */
+/* 	top: -2px; */
+/* 	right: 0px; */
+/* 	position: absolute; */
+/*     font-family: "FontAwesome" */
+/* } */
+.mom-color{
+	color:white;
+	background-color: #1c7178;
+}
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+/* .card-body-height-auto{ */
+/* overflow-y: scroll;height:25vh; */
+/* } */
+.mcard-collapsed .fa-chevron-right {
+  transform: rotate(-90deg);
+}
+.mcard-collapsed{
+  background-color: #1c7178;
+  color:white;
+}
+#categorie .card-body{
+	min-height:25vh;
+}
+/* .accordion .card-header.coll:after { */
+/* 	content: "\f106"; */
+/* } */
+/*Radio and Checkbox START*/
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+/*Radio and Checkbox END*/
+body {
+    font-family: 'Nunito';font-size: 16px;
+    background-color: white
+}

@@ -1,0 +1,31 @@
+#image-gallery .modal-footer{
+  display: block;
+}
+.thumb{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.mom-bordered-btn {
+  border: 1px solid #1c7178;
+  color: #1c7178;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 19px;
+/*   font-weight: bold; */
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+   display: none;
+}

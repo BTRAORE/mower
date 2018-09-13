@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https:////ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<!-- 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsGridView.css" th:href="@{/resources/static/css/dealsGridView.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+</head> 
+<body>
+	<div  id="main-content">
+	   	<div class="row content">
+			<div  layout:replace="/templates/dealsHeader :: deals-header('room')" ></div>
+	<!-- 	        <nav id="sidebar"> -->
+	        <div layout:replace="/templates/dealsSideMenu :: deals-side-menu" ></div>
+	       	<div id = "anno" layout:replace="/templates/dealsGridView :: deals-container"></div>
+			<div class="col-xs-5 col-lg-5">
+	    		<div id="side-map" ></div>
+	    	</div>
+	   	</div><!-- wrapper -->
+		<footer class="container-fluid text-center">
+	 			<p>Footer Text</p>
+		</footer>
+	</div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdIe_qoxjhXhZebieCUyWIiyy6O0k7PkE&libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="../../../resources/static/js/richmarker-compiled.js" th:src="@{/resources/static/js/richmarker-compiled.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 
+
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+<script type="text/javascript" src="../../../resources/static/js/deals.js" th:src="@{/resources/static/js/deals.js}"></script>
+<script type="text/javascript" src="../../../resources/static/js/momMap.js" th:src="@{/resources/static/js/momMap.js}"></script>
+</body> 
+</html>

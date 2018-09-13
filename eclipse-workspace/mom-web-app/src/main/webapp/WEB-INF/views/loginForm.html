@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<!-- Bootstrap core CSS -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../resources/static/css/momLogin.css" th:href="@{/resources/static/css/momLogin.css}">
+</head> 
+<body> 
+<!--Modal: Login / Register Form-->
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"> -->
+<!--     <div class="modal-dialog cascading-modal login-modal" role="document"> -->
+        <!--Content-->
+        <div class="modal-content" layout:replace="/templates/loginFormTemplate :: login-modal" >
+
+            
+        </div>
+        <!--/.Content-->
+<!--     </div> -->
+<!-- </div> -->
+<!--Modal: Login / Register Form-->
+  <!-- Placed at the end of the document so the pages load faster -->
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../../resources/static/js/momLogin.js" th:src="@{/resources/static/js/momLogin.js}"></script>
+</body> 
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Sous catégorie location</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/userProfile.css" th:href="@{/resources/static/css/userProfile.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+    
+</head> 
+<body>
+ <div  layout:replace="/templates/rentsHeader :: rents-header" > </div>
+ <div  layout:replace="/templates/userProfileSideMenu :: user-profile-side-menu('offerCreation')" > </div>
+<div class="depot-ann-container">
+		<ol class="breadcrumb breadcrumb-arrow">
+<!-- 			Topics-->
+		  <li class="breadcrumb-item"><a th:href="@{/userProfile/offerCreationTopics}">Les thèmes</a></li>
+		  <li class="breadcrumb-item" th:if="${'deals'.equals(offerCreationParams.topic)}"><a th:href="@{/userProfile/rentOfferCreationCategories?topic=deals}" >Le coin des affaires</a></li>
+		  <li class="breadcrumb-item" th:if="${'rents'.equals(offerCreationParams.topic)}"><a  th:href="@{/userProfile/rentOfferCreationCategories?topic=rents}" >Le coin de location</a></li>
+<!-- 		  Categories -->
+		  <li class="active" th:if="${'roomRent'.equals(offerCreationParams.category)}"><span>Chambre</span></li>
+		  <li class="active" th:if="${'toiletRent'.equals(offerCreationParams.category)}"><span>Toilette</span></li>
+		  <li class="active" th:if="${'cookingRent'.equals(offerCreationParams.category)}"><span>Repas</span></li>
+		  <li class="active" th:if="${'walkingRent'.equals(offerCreationParams.category)}"><span>Balade</span></li>
+		  <li class="active" th:if="${'gamingRent'.equals(offerCreationParams.category)}"><span>Eveil &#38; Jeux</span></li>
+		</ol>
+	<div class="catTable" th:if="${#strings.equals(#request.getParameter('category'), 'roomRent')}">
+			<ul class="row">
+				<li class="col-lg-3">
+	                <a href="#" class="btn btn-squared-default subCategory room-color">
+	                    <br />
+	                   Chambre
+	                </a>
+	                <ul class="hidden subCategory-items room-color">
+						<li th:each="roomItem : ${#servletContext.getAttribute('roomRent')}" ><a th:href="@{'/userProfile/createRentOffer?topic=rents&category=roomRent&subCategory=roomRent&itemName='+${roomItem.itemName}}" th:text="${roomItem.itemName}"></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div class="catTable" th:if="${#strings.equals(#request.getParameter('category'), 'toiletRent')}">
+			<ul class="row">
+				<li class="subCategoryWrapper col-lg-3">
+	                <a href="#" class="btn btn-squared-default subCategory toilet-color">
+	                    <br />
+	                   Toilette
+	                </a>
+	                <ul class="hidden subCategory-items toilet-color">
+						<li th:each="toiletItem : ${#servletContext.getAttribute('toiletRent')}" ><a   th:href="@{'/userProfile/createRentOffer?topic=rents&category=toiletRent&subCategory=toiletRent&itemName='+${toiletItem.itemName}}" th:text="${toiletItem.itemName}">menu meuble indisponible</a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div class="catTable" th:if="${#strings.equals(#request.getParameter('category'), 'cookingRent')}">
+			<ul class="row">
+				<li class="subCategoryWrapper col-lg-3">
+	                <a href="#" class="btn btn-squared-default subCategory cooking-color">
+	                    <br />
+	                   Repas
+	                </a>
+	                <ul class="hidden subCategory-items cooking-color">
+						<li th:each="cookingItem : ${#servletContext.getAttribute('cookingRent')}" ><a th:href="@{'/userProfile/createRentOffer?topic=rents&category=cookingRent&subCategory=cookingRent&itemName='+${cookingItem.itemName}}" th:text="${cookingItem.itemName}"></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div class="catTable" th:if="${#strings.equals(#request.getParameter('category'), 'walkingRent')}">
+			<ul class="row">
+				<li class="subCategoryWrapper col-lg-3">
+	                <a href="#" class="btn btn-squared-default subCategory walking-color">
+	                    <br />
+	                   Balade
+	                </a>
+	                <ul class="hidden subCategory-items walking-color">
+						<li th:each="walkItem : ${#servletContext.getAttribute('walkingRent')}" ><a  th:href="@{'/userProfile/createRentOffer?topic=rents&category=walkingRent&subCategory=walkingRent&itemName='+${walkItem.itemName}}" th:text="${walkItem.itemName}"></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div class="catTable" th:if="${#strings.equals(#request.getParameter('category'), 'gamingRent')}">
+			<ul class="row">
+				<li class="col-lg-3">
+	                <a href="#" class="btn btn-squared-default subCategory gaming-color">
+	                    <br />
+	                   Eveil &#38; Jeux
+	                </a>
+	                <ul class="hidden subCategory-items gaming-color">
+						<li th:each="gameItem : ${#servletContext.getAttribute('gamingRent')}" ><a th:href="@{'/userProfile/createRentOffer?topic=rents&category=gamingRent&subCategory=gamingRent&itemName='+${gameItem.itemName}}" th:text="${gameItem.itemName}"></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+</div>
+    <!-- Placed at the end of the document so the pages load faster -->
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- the main fileinput plugin file -->
+	<!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+   3.3.x versions without popper.min.js. -->
+<!-- piexif.min.js is only needed for restoring exif data in resized images and when you 
+    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/piexif.min.js" type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/sortable.min.js" type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+    HTML files. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/purify.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+<!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/themes/fa/theme.js"></script>
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+</body>
+</html>

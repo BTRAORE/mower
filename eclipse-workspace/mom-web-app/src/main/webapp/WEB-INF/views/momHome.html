@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<!-- Bootstrap core CSS -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link  href="../../resources/css/momHome.css" rel="stylesheet" type="text/css" th:href="@{/resources/static/css/momHome.css}">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/momCommon.css" th:href="@{/resources/static/css/momCommon.css}">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+    <link rel="stylesheet" type="text/css" href="../../resources/static/css/momLogin.css" th:href="@{/resources/static/css/momLogin.css}">
+    <link rel="icon" href="/resources/static/images/favicon.ico">
+</head> 
+<body> 
+<div  layout:replace="/templates/basicHeader :: basic-header" ></div>
+	    <!--Modal: Login / Register Form-->
+	<div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog cascading-modal login-modal" role="document">
+	        <!--Content-->
+	        <div class="modal-content" layout:replace="/templates/loginFormTemplate :: login-modal">
+	        </div>
+	    </div>
+	</div>
+            <div class="mom-themes-bar-container">
+            <div class="mom-themes-bar">
+            		
+		            <a href="/deals/dealsHome" th:href="@{/deals/dealsHome}" class="btn btn-squared-default mom-themes">
+		            	<img src="../../resources/images/coinDesAffaires.png" th:src="@{/resources/static/images/coinDesAffaires.png}"/>
+		                    <br />
+		                    Le coin
+		                    <br />
+		                    des affaires
+		            </a >
+		              
+		              <a href="#" class="btn btn-squared-default mom-themes">
+		              <img src="static/images/coinDesLoisirs.png" th:src="@{/resources/static/images/coinDesLoisirs.png}"/>
+		              		<br />
+		                    Le coin
+		                    <br />
+		                    des loisirs
+		               </a>
+                <a href="#" class="btn btn-squared-default mom-themes">
+                   <img src="static/images/coinPrenatal.png" th:src="@{/resources/static/images/coinPrenatal.png}"/>
+                    <br />
+                    Le coin
+                    <br />
+                    location voyage
+                </a>
+<!--               <a href="#" class="btn btn-squared-default mom-themes"> -->
+<!--                     <img src="static/images/coinDesSoins.png" th:src="@{/resources/static/images/coinDesSoins.png}"/> -->
+<!--                     <br /> -->
+<!--                     Le coin -->
+<!--                     <br /> -->
+<!--                     des soins -->
+<!--                 </a> -->
+<!--                 <a href="#" class="btn btn-squared-default mom-themes"> -->
+<!--                     <img src="static/images/coinGarderie.png" th:src="@{/resources/static/images/coinDesSoins.png}"/> -->
+<!--                     <br /> -->
+<!--                     Le coin -->
+<!--                     <br /> -->
+<!--                     garderie -->
+<!--                 </a> -->
+<!--                 <a href="#" class="btn btn-squared-default mom-themes"> -->
+<!--                     <img src="static/images/coinRecette.png" th:src="@{/resources/static/images/coinDesSoins.png}"/> -->
+<!--                     <br /> -->
+<!--                     Le coin  -->
+<!--                     <br /> -->
+<!--                     des recettes -->
+<!--                 </a> -->
+            </div>
+          </div>
+	<!-- Placed at the end of the document so the pages load faster -->
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body> 
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Contact</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+</head>
+<body>
+	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true" layout:fragment="contact-modal">
+		<div class="modal-dialog" role="document">
+			<!--Content-->
+			<div class="modal-content">
+				<div class="modal-body">
+	<div class="row justify-content-center">
+		<div class="col-12">
+                    <form action="mail.php" method="POST">
+                        <div class="border-primary rounded-0">
+                            <div class="card-header p-0">
+                                <div class="mom-default-btn text-white text-center py-2">
+                                    <h3><span th:text="${#strings.capitalize(offer.customer?.firstname)}"></span> <span th:text="${#strings.toUpperCase(offer.customer?.Lastname)}"></span></h3>
+                                    <p class="m-0" th:text="${offer.offerTitle}"></p>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2 mt-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Votre nom" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                                        </div>
+                                        <input type="email" class="form-control" id="nombre" name="email" placeholder="votre email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-phone mom-color"></i></div>
+                                        </div>
+                                        <input type="tel" class="form-control" id="nombre" name="email" placeholder="votre numéro de téléphone" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-commenting-o fa-2x"></i></div>
+                                        </div>
+                                        <textarea class="form-control" rows="8" placeholder="Bonjour, je me permet de vous contacter ..." required></textarea>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" value="Envoyer" class="btn mom-default-btn btn-block rounded-0 py-2">
+                                </div>
+                            </div>
+                    </form>
+                </div>
+	</div>
+				</div>
+			<!--Footer-->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-info mom-default-btn waves-effect ml-auto" data-dismiss="modal">Annuller</button>
+			</div>
+			</div>
+		</div>
+	</div>
+	  <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<!--  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

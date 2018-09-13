@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+.mom-themes-bar-container{
+}
+
+.mom-themes-bar{
+	margin-top:16%;
+	margin-left:35%;
+	margin-right:35%;
+}
+.mom-themes{
+	color:#1c7178;
+	text-decoration:none;
+	font-size: 20px;
+	border: none;
+	text-align:center;
+	/*border-bottom: 3px outset  #AEC77A;*/
+	/*background-color: #AEC77A;*/
+/* 	font-family: cursive; */
+	padding-left:20px;
+	padding-bottom:0px;
+	top:30px;
+	width:150px;
+	height:180px;
+	float:left;
+}
+.mom-themes-link{
+	color:#1c7178;
+	text-decoration:none;
+	font-size: 20px;
+	border: none;
+	text-align:center;
+	/*border-bottom: 3px outset  #AEC77A;*/
+	/*background-color: #AEC77A;*/
+/* 	font-family: cursive; */
+	padding:20px;
+	top:30px;
+	width:150px;
+	height:150px;
+	float:left;
+}
+.mom-themes:HOVER {
+	
+	color:#1c7178;
+	font-size: 20px;
+	border: none;
+	text-align:center;
+	/*border-bottom: 3px outset  #AEC77A;*/
+	/*background-color: #AEC77A;*/
+/* 	font-family: cursive; */
+	padding:20px;
+	top:30px;
+	width:150px;
+	height:205px;
+	float:left;
+	/** colored dot line */
+	padding-bottom: 50px;
+	background-repeat: no-repeat;
+    background-position: center bottom;
+    background-image: url("../images/coloredDotLine.png");
+	}

@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+</head> 
+<body>
+<div  layout:fragment="deals-header(witchOneActive)" >
+ <nav class="navbar navbar-expand-md fixed-top bg-light">
+    	<div class="menu-container">
+      		<div class="navbar-brand logo"><img src="../../../resources/static/images/momMascote-cropped3.png" th:src="@{/resources/static/images/momMascote-cropped3.png}"/><a th:href="@{/welcome}" class="logo-text" >MÔM</a></div>
+<!--       		<div class="mom-themes-bar-container"> -->
+            <div  id="menu-themes"class="mom-header-themes-bar nav navbar-nav">
+           	 <div>
+            	<a th:href="@{/offers?topic=deals}" class="topics-in-menu-header" th:classappend="${offerProperties != null && #strings.equals(offerProperties.topic,'deals')} ? 'mom-item-selected' : ''">Le coin des affaires</a >
+		      	<a th:href="@{/offers?topic=rents}" class="topics-in-menu-header">Le coin location</a>
+                	</div>
+                </div>
+      		<div class="menu-search">
+	      		<form id="search-form">
+    				<div class="input-group col-6">
+        				<input id = "cities-autocomplete" type="text" class="form-control search-form" placeholder="&#xf041; Ville">
+   				    </div>
+				</form>
+        	</div>
+        	<div>
+        	<!-- if user is not authenticated anonymous  -->
+        		<ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right">
+		      		<li class="nav-item"><a class="btn login-button" href="#" data-toggle="modal" data-target="#loginModal"><span class="fa fa-user-circle"></span> Se connecter</a></li>
+		    	</ul>
+		    	
+			<!-- if user is authenticated  -->
+		    	<ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
+			    	 <li class="dropdown nav-item login-button btn">
+				          <a href="/userProfile/userInfos" th:href="@{/userProfile/userInfos}"  class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-o pull-left"></span>Bréhima TRAORE</a>
+				          <ul class="dropdown-menu">
+				            <li class="dropdown-item" ><a th:href="@{/userProfile/userInfos}"><span class="fa fa-user-o pull-left text-center"></span>Mes informations</a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a  th:href="@{/userProfile/offerCreationTopics}" ><span class="fa fa-pencil-square-o pull-left text-center" style="vertical-align: bottom;"></span>Déposer une annonce</a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a  th:href="@{/userProfile/userOffers}" ><span class="fa fa-list pull-left"></span>Mes annonces<span class="badge badge-secondary pull-right"> 4 </span></a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a  th:href="@{/userProfile/userBookmarkedOffers}" ><span class="fa fa-heart-o pull-left"></span>Mes favoris<span class="badge badge-secondary pull-right"> 8 </span></a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a  th:href="@{/userProfile/userMsgs}" ><span class="fa fa-comment-o pull-left"></span>Messages <span class="badge badge-secondary pull-right"> 2 </span></a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a th:href="@{/userProfile/userNotifications}" ><span class="fa fa-bell-o pull-left"></span>Mes alertes</a></li>
+				            <li class="dropdown-divider"></li>
+				            <li class="dropdown-item"><a th:href="@{/confirmLogout}" ><span class="fa fa-power-off pull-left"></span>Se déconnecter </a></li>
+				          </ul>
+	        		</li>
+        		</ul>
+		    </div>
+		    <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-bttn" aria-controls="menu-bttn" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               <span class="navbar-toggler-icon"></span>
+               <span class="navbar-toggler-icon"></span>
+               <span class="navbar-toggler-icon"></span>
+             </button>
+        	<div class="collapse navbar-collapse menu-bttn">
+            <div class="" id="mainNavbar">
+                <ul class="navbar-nav" id="menu">	
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-multi-level-menu-drop" th:href="@{/offers?topic=deals&category=room}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'room')} ? 'mom-item-selected' : ''">Chambre</a>
+	                    <ul class="dropdown-menu mom-multi-level-menu-drop hidden row">
+		                    <li>
+		                    	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=room&subCategory=furnitures}">Meuble</a>
+								<ul class="mom-submenu-drop submenu-right">
+					                <li th:each="furItem : ${#servletContext.getAttribute('furnitures')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=room&subCategory=furnitures&itemName='+${furItem.itemName}}" th:text="${furItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=room&subCategory=textiles}">Textile de chambre</a>
+								<ul class="mom-submenu-drop submenu-right">
+					                <li th:each="textileItem : ${#servletContext.getAttribute('textiles')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=room&subCategory=textiles&itemName='+${textileItem.itemName}}" th:text="${textileItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" href="#">Décoration</a>
+								<ul class="mom-submenu-drop submenu-right">
+					                <li th:each="decoItem : ${#servletContext.getAttribute('decorations')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=room&subCategory=decorations&itemName='+${decoItem.itemName}}" th:text="${decoItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-one-level-menu-drop" th:href="@{/offers?topic=deals&category=toilet}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'toilet')} ? 'mom-item-selected' : ''">Toilette</a>
+	                    <ul class="dropdown-menu mom-one-level-menu-drop hidden">
+					      <li th:each="toiletItem : ${#servletContext.getAttribute('toilets')}" >
+					      		<a th:href="@{'/offers?topic=deals&category=toilet&subCategory=toilets&itemName='+${toiletItem.itemName}}" th:text="${toiletItem.itemName}"></a>
+					      </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-one-level-menu-drop" th:href="@{/offers?topic=deals&category=cooking}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'cooking')} ? 'mom-item-selected' : ''">Repas</a>
+	                    <ul class="dropdown-menu mom-one-level-menu-drop hidden row">
+					       <li th:each="cookingItem : ${#servletContext.getAttribute('cooking')}" >
+					       		<a th:href="@{'/offers?topic=deals&category=cooking&subCategory=cooking&itemName='+${cookingItem.itemName}}" th:text="${cookingItem.itemName}"></a>
+					       </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-one-level-menu-drop" th:href="@{/offers?topic=deals&category=walking}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'walking')} ? 'mom-item-selected' : ''">Balade</a>
+	                    <ul class="dropdown-menu mom-one-level-menu-drop hidden row">
+					       <li th:each="walkItem : ${#servletContext.getAttribute('walking')}" >
+					       		<a th:href="@{'/offers?topic=deals&category=walking&subCategory=walking&itemName='+${walkItem.itemName}}" th:text="${walkItem.itemName}"></a>
+					       </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-one-level-menu-drop" th:href="@{/offers?topic=deals&category=security}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'security')} ? 'mom-item-selected' : ''">Sécurité</a>
+	                    <ul class="dropdown-menu mom-one-level-menu-drop hidden row">
+					      <li th:each="secuItem : ${#servletContext.getAttribute('securities')}" >
+					      		<a th:href="@{'/offers?topic=deals&category=security&subCategory=securities&itemName='+${secuItem.itemName}}" th:text="${secuItem.itemName}"></a>
+					      </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-multi-level-menu-drop" th:href="@{/offers?topic=deals&category=gaming}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'gaming')} ? 'mom-item-selected' : ''">Eveil &#38; jeu</a>
+                    	<ul class="dropdown-menu mom-multi-level-menu-drop hidden row">
+		                    <li>
+		                    	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=awakening}">Eveil</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="awakItem : ${#servletContext.getAttribute('awakening')}" >
+					                <a th:href="@{'/offers?topic=deals&category=gaming&subCategory=awakening&itemName='+${awakItem.itemName}}" th:text="${awakItem.itemName}"></a></li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=outdoors}">Sport et plein air</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="sportItem : ${#servletContext.getAttribute('outdoors')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=outdoors&itemName='+${sportItem.itemName}}" th:text="${sportItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=discoveries}">Découvrir et manipuler</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="discoveryItem : ${#servletContext.getAttribute('discoveries')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=discoveries&itemName='+${discoveryItem.itemName}}" th:text="${discoveryItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=puzzles}">Jeux créatifs et puzzles</a>
+								<ul class="mom-submenu-drop submenu-left top-100">
+					                <li th:each="puzzleItem : ${#servletContext.getAttribute('puzzles')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=puzzles&itemName='+${puzzleItem.itemName}}" th:text="${puzzleItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=cars}">Véhicule, circuit et jouet rad.. </a>
+								<ul class="mom-submenu-drop submenu-left top-150">
+					                <li th:each="carItem : ${#servletContext.getAttribute('cars')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=cars&itemName='+${carItem.itemName}}" th:text="${carItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=medias}">Médiatèque</a>
+								<ul class="mom-submenu-drop submenu-left top-150">
+					                <li th:each="mediaItem : ${#servletContext.getAttribute('medias')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=medias&itemName='+${mediaItem.itemName}}" th:text="${mediaItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=imaginaries}">Jeux d'imitation et d'imagin...</a>
+								<ul class="mom-submenu-drop submenu-left top-150">
+					                <li th:each="imagItem : ${#servletContext.getAttribute('imaginaries')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=imaginaries&itemName='+${imagItem.itemName}}" th:text="${imagItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=dolls}">Poupée et pelouche</a>
+								<ul class="mom-submenu-drop submenu-left top-250">
+					                <li th:each="dollItem : ${#servletContext.getAttribute('dolls')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=dolls&itemName='+${dollItem.itemName}}" th:text="${dollItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=boards}">Jeux de société</a>
+								<ul class="mom-submenu-drop submenu-left top-250">
+					                <li th:each="boardItem : ${#servletContext.getAttribute('boards')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=boards&itemName='+${boardItem.itemName}}" th:text="${boardItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=building}">Jeux de construction</a>
+								<ul class="mom-submenu-drop submenu-left top-250">
+					                <li th:each="buildingItem : ${#servletContext.getAttribute('building')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=building&itemName='+${buildingItem.itemName}}" th:text="${buildingItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=gaming&subCategory=musicInstruments}">Instruments de musique</a>
+								<ul class="mom-submenu-drop submenu-left top-250">
+					                <li th:each="musicInstItem : ${#servletContext.getAttribute('musicInstruments')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=gaming&subCategory=musicInstruments&itemName='+${musicInstItem.itemName}}" th:text="${musicInstItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-multi-level-menu-drop" th:href="@{/offers?topic=deals&category=clothing}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'clothing')} ? 'mom-item-selected' : ''">Vêtements</a>
+                    	<ul class="dropdown-menu mom-multi-level-menu-drop hidden row">
+<!-- 	                   		 <li><h5> Meuble </h5></li> -->
+		                    <li >
+		                    	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=shoes}">Chaussure</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="shoesItem : ${#servletContext.getAttribute('shoes')}" >
+					                <a th:href="@{'/offers?topic=deals&category=clothing&subCategory=shoes&itemName='+${shoesItem.itemName}}" th:text="${shoesItem.itemName}"></a></li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=wears}">Prêt à porter</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="wearItem : ${#servletContext.getAttribute('wears')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=clothing&subCategory=wears&itemName='+${wearItem.itemName}}" th:text="${wearItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=underwears}">Sous vêtements</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="underwearItem : ${#servletContext.getAttribute('underwears')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=clothing&subCategory=underwears&itemName='+${underwearItem.itemName}}" th:text="${underwearItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=jackets}">Vestes et manteaux</a>
+								<ul class="mom-submenu-drop submenu-left top-100">
+					                <li th:each="jacketItem : ${#servletContext.getAttribute('jackets')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=clothing&subCategory=jackets&itemName='+${jacketItem.itemName}}" th:text="${jacketItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=nightWears}">Vêtements de nuit</a>
+								<ul class="mom-submenu-drop submenu-left top-100">
+					                <li th:each="nightWearItem : ${#servletContext.getAttribute('nightWears')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=clothing&subCategory=nightWears&itemName='+${nightWearItem.itemName}}" th:text="${nightWearItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=clothing&subCategory=sportWears}">Vêtements de sport</a>
+								<ul class="mom-submenu-drop submenu-left top-200">
+					                <li th:each="sportWearItem : ${#servletContext.getAttribute('sportWears')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=clothing&subCategory=sportWears&itemName='+${sportWearItem.itemName}}" th:text="${sportWearItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+			            </ul>
+                    </li>
+                    <li class="nav-item menuItem">
+                    	<a class="dropdown-toggle" data-toggle="mom-multi-level-menu-drop" th:href="@{/offers?topic=deals&category=maternity}" th:classappend="${offerProperties != null && #strings.equals(offerProperties.category,'maternity')} ? 'mom-item-selected' : ''">Martenité</a>
+                    	<ul class="dropdown-menu mom-multi-level-menu-drop hidden row">
+		                    <li>
+		                    	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=maternity&subCategory=accessories}">Accessoire</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="accessoryItem : ${#servletContext.getAttribute('accessories')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=maternity&subCategory=accessories&itemName='+${accessoryItem.itemName}}" th:text="${accessoryItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=maternity&subCategory=readingAndDvds}">Lecture et DVD</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="rdItem : ${#servletContext.getAttribute('readingAndDvds')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=maternity&subCategory=readingAndDvds&itemName='+${rdItem.itemName}}" th:text="${rdItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        <li>
+					        	<a class="dropdown-toggle" data-toggle="mom-submenu-drop" th:href="@{/offers?topic=deals&category=maternity&subCategory=pregnancyWears}">Vêtements de grossesse</a>
+								<ul class="mom-submenu-drop submenu-left">
+					                <li th:each="pregWearItem : ${#servletContext.getAttribute('pregnancyWears')}" >
+					                	<a th:href="@{'/offers?topic=deals&category=maternity&subCategory=pregnancyWears&itemName='+${pregWearItem.itemName}}" th:text="${pregWearItem.itemName}"></a>
+					                </li>
+					            </ul>
+					        </li>
+					        </ul>
+                    </li>
+                </ul>
+<!--             </div> -->
+            </div>
+          </div>
+          </div>
+    </nav>
+    <div  class="modal-content" layout:replace="/templates/loginFormTemplate :: login-modal" ></div>
+</div>
+<!-- Placed at the end of the document so the pages load faster -->
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- the main fileinput plugin file -->
+	<!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+   3.3.x versions without popper.min.js. -->
+<!-- piexif.min.js is only needed for restoring exif data in resized images and when you 
+    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/piexif.min.js" type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/sortable.min.js" type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+    HTML files. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/purify.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+<!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/themes/fa/theme.js"></script>
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+</body> 
+</html>

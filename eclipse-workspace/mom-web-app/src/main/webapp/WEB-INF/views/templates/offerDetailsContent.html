@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.csss" th:href="@{/resources/static/css/dealsHome.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/offerDetails.css" th:href="@{/resources/static/css/offerDetails.css}">
+</head> 
+<body>
+	<div class="container-fluid offer-details-container"  layout:fragment="offer-details" >
+	<!-- main slider carousel -->
+	    <div class="row">
+	    	<div class="price-and-payment-box" >
+		    	<a href="#" class="btn price-bttn text-center pull-right">Prix <br><span th:text="${offer.offerPrice}+'€'"></span></a>
+		    	<a href="#" class="btn payment-bttn pull-right" style="margin-bottom:0;">Payement <br>en ligne</a>
+		    </div>
+		    <div th:if="${#lists.isEmpty(offer.offerImgs)}" class="col-lg-6 text-center">
+		    	<img style="position:absolute;top:40%; left:20%" src="#" alt=" Aucune image disponible pour cette annonce.">
+		    </div>
+	        <div th:if="${not #lists.isEmpty(offer.offerImgs)}" id="myCarousel" class="carousel col-lg-6" data-ride="carousel">
+		        <div class="carousel-inner">
+		            <div class="carousel-item"  th:each="img, iter : ${offer.offerImgs}"  th:id="'offer-img-'+${iter.index}" th:classappend="${iter.first} ? 'active' : ''">
+		                <img th:src="@{'/images/customer/'+${offer.customer?.customerId}+'/offer/'+${offer.offerId}+'/'+${img}}">
+		            </div>
+		        </div>
+	        	<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+		            <span class="carousel-control-prev-icon"></span>
+		            <span class="sr-only">Previous</span>
+		        </a>
+		        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+		            <span class="carousel-control-next-icon"></span>
+		            <span class="sr-only">Next</span>
+		        </a>
+		        <ul class="carousel-indicators">
+		            <li data-target="#myCarousel" th:each="img, iter : ${offer.offerImgs}"  th:id="'offer-img-ind'+${iter.index}" th:appendclass="${iter == 0} ? 'active' : ''" data-slide-to="${iter}" ><img th:src="@{'/images/customer/'+${offer.customer.customerId}+'/offer/'+${offer.offerId}+'/'+${img}}"></li>
+		        </ul>
+	    	</div>
+		    <div class="col-xs-3 col-lg-3">
+		    	<div id="details-side-map" ></div>
+		    </div>
+	    </div>
+	    <div class="row">
+		<!-- 	    juste pour avoir exactement le meme qu'en haut-->
+	    <div class="price-and-payment-box" >
+		    </div>
+			<div class="details-box col-xs-6 col-lg-6">
+				<h5 class="product-title" th:text="${#strings.capitalize(offer.offerTitle)}"></h5>
+				<div class="details-title-bar text-center" style="display:block-inline; margin-top:20px;">
+				  <a href="#" class="btn pull-right"><span class="fa fa-share-alt"></span> Partager</a>
+				  <a href="#" class="btn pull-right"><span class="fa fa-heart-o"></span> Ajouter au favoris</a>
+				  <a sec:authorize="isAuthenticated()" href="#" class="btn pull-right"><span class="fa fa-eye"></span> Vues</a>
+				  <a sec:authorize="isAuthenticated()" href="#" class="btn pull-right"><span class="fa fa-pencil"></span> Editer</a>
+				  <a sec:authorize="isAuthenticated()" href="#" class="btn pull-right" data-toggle="modal" data-target="#deleteConfirmModal"><span class="fa fa-trash-o"></span> Supprimer</a>
+				</div>
+				<a href="#" class="btn product-description-title">Détails </a>
+				<hr/>
+				<p class="product-descriptio" th:text="${offer.offerDescription}" >
+				Description de l'annonce
+				</p>
+				<ul class="list-group list-group-flush" style="margin-top:10vh;margin-bottom:10vh;">
+				  <li class="list-group-item" ><strong>Etat du produit</strong> : <span th:text="${offer.state?.stateName}"></span></li>
+				  <li class="list-group-item"><strong>Age </strong>: </li>
+				  <li class="list-group-item"><strong>Marque </strong>: <span th:text="${offer.brand?.brandName}"></span></li>
+				  <li class="list-group-item"><strong>Date de création </strong>: <span th:text="${offer.offerCreationDate}"></span></li>
+				  <li class="list-group-item"><strong>Date de dernière modification</strong> : <span th:text="${offer.offerLastUpdate}"></span></li>
+				  <li class="list-group-item"><strong>Payement en ligne possible </strong>: <span th:text="${offer.isOnlinePayment} ? 'Oui' : Non"></span></li>
+				</ul>
+				<input class="lat" type="hidden"   th:value="${offer.address?.lat}">
+				<input class="lng" type="hidden" th:value="${offer.address?.lng}">	
+				<input class="offer-price" type="hidden" th:value="${offer.offerPrice}">	
+			</div>
+			<div class="annonceur-pane text-center col-md-3 col-lg-3">
+				<h4 class="annonceur-name"><span th:text="${#strings.capitalize(offer.customer?.firstname)}"></span> <span th:text="${#strings.toUpperCase(offer.customer?.Lastname)}"></span></h4>
+				<p style = "margin-bottom:40px;" th:text="${offer.address?.city}">Paris 20e</p>
+				<div class="annonceur-contact text-center">
+					<button id="offer-phone" class="btn btn-block mom-default-btn" th:attr="data-phone-num=${offer.phoneNumber}"><span class="fa fa-phone"></span> téléphone</button>
+					<a href="#" class="btn btn-block mom-default-btn" data-toggle="modal" data-target="#contactModal"><span class="fa fa-envelope"></span> Ecrire à l'annonceur</a>
+					<a th:href="@{'/users/'+${offer.customer?.customerId}+'/offers'}" class="btn btn-block mom-default-btn"><span class="fa fa-eye"></span> Voir toutes les annonces de l'annonceur</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- </div> -->
+		
+<!-- 	<div id="side-map"></div> -->
+	 <!-- Placed at the end of the document so the pages load faster -->
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+<script type="text/javascript" src="../../../resources/static/js/deals.js" th:src="@{/resources/static/js/deals.js}"></script>
+</body>
+</html>

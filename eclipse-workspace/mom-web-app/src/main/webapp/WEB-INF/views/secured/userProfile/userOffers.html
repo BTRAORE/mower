@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Mes annonces</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/userProfile.css" th:href="@{/resources/static/css/userProfile.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+</head>
+<body>
+ <div  layout:replace="/templates/dealsHeader :: deals-header" > </div>
+ <div  layout:replace="/templates/userProfileSideMenu :: user-profile-side-menu('userOffers')" > </div>
+ <div class="user-offers-container"> 
+ 	<h5 th:if="${offerList == null}"><span class="fa fa-info-circle"></span>Vous n'avez aucune annonce !</h5> 
+<!--  	<div class="row"> -->
+<!-- 		<div class="col-10"> -->
+<!--             <div class="input-group" id="adv-search"> -->
+<!--                 <input type="text" class="form-control" placeholder="Search for snippets" /> -->
+<!--                 <div class="input-group-btn"> -->
+<!--                     <div class="btn-group" role="group"> -->
+<!--                         <div class="dropdown dropdown-lg"> -->
+<!--                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button> -->
+<!--                             <div class="dropdown-menu dropdown-menu-righ" role="menu"> -->
+<!--                             	<div class="dropdown-item"> -->
+<!--                                 <form class="form-horizontal" role="form"> -->
+<!--                                   <div class="form-group"> -->
+<!--                                     <label for="filter">Filter by</label> -->
+<!--                                     <select class="form-control"> -->
+<!--                                         <option value="0" selected>All Snippets</option> -->
+<!--                                         <option value="1">Featured</option> -->
+<!--                                         <option value="2">Most popular</option> -->
+<!--                                         <option value="3">Top rated</option> -->
+<!--                                         <option value="4">Most commented</option> -->
+<!--                                     </select> -->
+<!--                                   </div> -->
+<!--                                   <div class="form-group"> -->
+<!--                                     <label for="contain">Author</label> -->
+<!--                                     <input class="form-control" type="text" /> -->
+<!--                                   </div> -->
+<!--                                   <div class="form-group"> -->
+<!--                                     <label for="contain">Contains the words</label> -->
+<!--                                     <input class="form-control" type="text" /> -->
+<!--                                   </div> -->
+<!--                                   <button type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button> -->
+<!--                                 </form> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <button type="button" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+  <div class="row" th:if="${offerList != null}">
+			         <div class="ca">
+								<div class="bg">
+									<table class="table table-bordered table-striped text-center">
+									<tr class="filters">
+										<th>
+											Image principale
+										</th>
+										<th>
+										Titre
+										</th>
+										<th>
+										Date de la dernière mise à jour
+										</th>
+										<th>
+										Etat
+										</th>
+										<th>
+										Actions
+										</th>
+									</tr>
+										<tr class="text-center" th:each="offer, iter : ${offerList}">
+											<td>
+												<a class="thumbnail" th:href="@{'/dealOffers/offerDetails/'+${offer.offerId}}">
+													 <img class="img-thumbnail"
+	                         								th:src="@{'/images/customer/'+${offer.customer.customerId}+'/offer/'+${offer.offerId}+'/'+${offer.mainImg}}"
+	                         								alt="Image de l'annonce" width="180" height="100">
+	                							</a>
+											</td>
+											<td><a href="#" th:text="${offer.offerTitle}">Mon super annonce de valeur</a></td>
+											<td><span href="#" th:text="${#dates.format(offer.offerLastUpdate, 'dd/MM/yyyy à HH:mm')}">12/05/2018 à 16:10</span></td>
+											<td><span class="badge badge-success" data-toggle="tooltip" title="L'annonce a été validé">Validé</span></td>
+											<td>
+												<a class="btn" href="#" data-toggle="tooltip" title="Editer l'annonce"><span class="fa fa-pencil"></span></a>
+												<a class="btn" href="#" data-toggle="tooltip" title="Supprimer l'annonce"><span class="fa fa-trash-o"></span></a>
+											</td>
+										</tr>
+									</table>
+								</div>
+<!-- 							</table> -->
+						</div>
+		        </div>
+		        </div>
+   <!-- Placed at the end of the document so the pages load faster -->
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+</body>
+</html>

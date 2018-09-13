@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Catégorie location</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/userProfile.css" th:href="@{/resources/static/css/userProfile.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/mom-menu-item.css" th:href="@{/resources/static/css/mom-menu-item.css}">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/dealsHome.css" th:href="@{/resources/static/css/dealsHome.css}">
+    
+</head> 
+<body>
+ <div  layout:replace="/templates/rentsHeader :: rents-header" > </div>
+ <div  layout:replace="/templates/userProfileSideMenu :: user-profile-side-menu('offerCreation')" > </div>
+<div class="depot-ann-container">
+	<ol class="breadcrumb breadcrumb-arrow">
+<!-- 			Topics-->
+		  <li class="breadcrumb-item"><a th:href="@{/userProfile/offerCreationTopics}">Les thèmes</a></li>
+		  <li class="active" th:if="${'deals'.equals(offerCreationParams.topic)}"><span>Le coin des affaires</span></li>
+		  <li class="active" th:if="${'rents'.equals(offerCreationParams.topic)}"><span>Le coin de location</span></li>
+	</ol>
+	<div class="row">
+         <div class="col-lg-12">
+            <p>
+                <a th:href="@{/userProfile/rentOfferCreationSubCategories?topic=rents&category=roomRent}" class="btn btn-squared-default depot-ann-btn-aff-chamb">
+                    <br />
+                    Chambre
+                </a>
+                <a th:href="@{/userProfile/rentOfferCreationSubCategories?topic=rents&category=toiletRent}" class="btn btn-squared-default depot-ann-btn-aff-toilt">
+                    <br />
+                    Toilette
+                </a>
+                <a th:href="@{/userProfile/rentOfferCreationSubCategories?topic=rents&category=cookingRent}" class="btn btn-squared-default depot-ann-btn-aff-repas">
+                    <br />
+                    Repas
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+            	<a th:href="@{/userProfile/rentOfferCreationSubCategories?topic=rents&category=walkingRent}" class="btn btn-squared-default depot-ann-btn-aff-balade">
+                    <br />
+                    Balade
+                </a>
+                <a th:href="@{/userProfile/rentOfferCreationSubCategories?topic=rents&category=gamingRent}" class="btn btn-squared-default depot-ann-btn-aff-evjeu">
+                    <br />
+                    Eveil et Jeu
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+    <!-- Placed at the end of the document so the pages load faster -->
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- the main fileinput plugin file -->
+	<!-- popper.min.js below is needed if you use bootstrap 4.x. You can also use the bootstrap js 
+   3.3.x versions without popper.min.js. -->
+<!-- piexif.min.js is only needed for restoring exif data in resized images and when you 
+    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/piexif.min.js" type="text/javascript"></script>
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/sortable.min.js" type="text/javascript"></script>
+<!-- purify.min.js is only needed if you wish to purify HTML content in your preview for 
+    HTML files. This must be loaded before fileinput.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/plugins/purify.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+<!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/themes/fa/theme.js"></script>
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+</body>
+</html>

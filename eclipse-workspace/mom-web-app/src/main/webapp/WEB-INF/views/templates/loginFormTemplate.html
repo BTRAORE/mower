@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<!-- Bootstrap core CSS -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/resources/static/css/login.css}">
+</head> 
+<body> 
+
+<!--Modal: Login / Register Form-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" layout:fragment="login-modal">
+    <div id="myModalLabel" class="modal-dialog cascading-modal login-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+			 <div th:if="${#request.getParameter('error') == 'true'}"
+	            style="color:red;margin:10px 0px;">
+		         Login Failed!!!<br />
+		         Reason :
+		         <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+		            th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+		                Static summary
+		         </span>
+	         </div>
+            <!--Modal cascading tabs-->
+            <div class="modal-c-tabs">
+				<div class="modal-header">
+			        <ul class="nav nav-tabs tabs-3 darken-3" role="tablist">
+			           <li class="nav-item">
+			              <a class="nav-link"  th:classappend="!${regForm} ? 'active' : ''" data-toggle="tab" href="#signIn" role="tab"><i class="fa fa-user mr-1"></i>Connexion</a>
+			           </li>
+			           <li class="nav-item" >
+			              <a class="nav-link" th:classappend="${regForm} ? 'active' : ''" data-toggle="tab" href="#signUp" role="tab"><i class="fa fa-user-plus mr-1"></i> Créer un compte</a>
+			            </li>
+			        </ul>
+			    	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			    </div>
+                <!-- Tab panels -->
+                <div class="tab-content">
+                    <!-- signIN-->
+                    <div class="tab-pane" th:classappend="!${regForm} ? 'fade in show active' : ''" id="signIn" role="tabpanel">
+                        <!--Body-->
+                        <div class="modal-body mb-1">
+	                       	 <div class="login-user-icon text-center mx-auto">
+	                           	<img src="../../../resources/static/images/ballon.png" th:src="@{/resources/static/images/login-user-icon.png}"/>
+	                          </div>
+	                          <div class="login-input-wrapper">
+                               	<form name='f' th:action="@{/login}" method='POST'>
+		                            <div class="form-group">
+		                              <span class="fa fa-envelope-o input-icon"></span>
+		                              <label data-error="wrong" data-success="right" for="userEmail"> Identifiant</label>
+		                              <input type="email" class="login-input form-control" placeholder="Adresse mail" id="userEmail"  name="username" />
+		                              <span class="underline"></span>
+	                            	</div>
+		                            <div class="form-group">
+	                                	<span class="fa fa-lock prefix"></span> 
+	                                	<label data-error="wrong" data-success="right" for="userPwd">Mot de passe</label>
+	                                	<input type="password" class="login-input form-control" placeholder="Votre mot de passe" id="userPwd"  name="password"></input>
+	                                   <span class="underline"></span>
+	                                </div>
+	                                <div class="text-center mt-2">
+                                		<button class="btn mom-default-btn" name="submit" type="submit" >Se connecter <i class="fa fa-sign-in ml-1"></i></button>
+                            		</div>
+                            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	                             </form>
+                             </div>
+                            
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <div class="options text-center mt-1">
+                                <p>Pas de compte ? <a th:href="@{/account/registration/momUser}" class="blue-text">Créer un compte</a></p>
+                                <p><a href="#" class="blue-text">Mot de passe oublié ?</a></p>
+                            </div>
+                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Fermer</button>
+                        </div>
+
+                    </div>
+                    <!--/. connexion-->
+
+                    <!--Inscription-->
+                    <div class="tab-pane"  th:classappend="${regForm} ? 'fade in show active' : ''" id="signUp" role="tabpanel">
+
+                        <!--Body-->
+                        <div class="modal-body">
+                            <div class="login-input-wrapper">
+	                            <form action="#" th:action="@{/account/registration/momUser}" th:object="${momUser}" method="POST" enctype="utf8" autocomplete="on">
+	                           
+	                            	 <div class="civilit form-check form-check-inline">
+		                              	<label class="civilite-lbl form-check-label" for="userGenderMr">Civilité : </label>
+		                              	<label class="civilite-lbl form-check-label" for= "cvlt-mr">Monsieur</label>
+		                              	<input class="form-check-input gender-radio" type="radio" th:field="*{gender}" th:value="Monsieur" name="radio" id = "userGenderMr"/>
+										<label class="civilite-lbl form-check-label" for= "cvlt-mdm">Madame</label>
+										<input class="form-check-input gender-radio" type="radio" th:field="*{gender}" th:value="Madame" name="radio" id = "userGenderMme"/>
+		                            </div>
+	                            	 <div class="form-group">
+	                            	 <span class="fa fa-user input-icon"></span>
+		                              <label data-error="wrong" data-success="right" for="firstname">Prénom : </label>
+		                              <input class="form-control login-input"  type="text" th:field="*{firstname}" title="votre prénom" placeholder="Votre Prénom" id="firstname" required/>
+		                              <span class="underline"></span>
+		                              <span class="fa fa-times invalid-feedback" th:each="error: ${#fields.errors('firstname')}" th:text="' '+${error}">Validation error</span>
+		                            </div>
+		                            
+		                            <div class="form-group">
+		                           	 <span class="fa fa-user input-icon"></span>
+			                            <label data-error="wrong" data-success="right" for="lastname">Nom : </label>
+			                            <input class="form-control login-input invalid" type="text" th:field="*{lastname}" placeholder="Votre Nom" title="votre nom de famille" id="lastname" required/>
+			                            <span class="underline"></span>
+			                            <span class="fa fa-times invalid-feedback" th:each="error: ${#fields.errors('lastname')}" th:text="' '+${error}">Validation error</span>
+		                            </div>
+		                             
+		                            <div class="form-group">
+			                              <label data-error="wrong" data-success="right" for="pseudo">Pseudo : </label>
+			                              <input type="text" class="form-control login-input" th:field="*{pseudonym}" title="votre pseudonyme" placeholder="Votre pseudonyme" id="pseudo"/>
+			                              <span class="underline"></span>
+		                            </div>
+		                            
+		                            <div class="form-group">
+		                              <span class="fa fa-envelope-o input-icon"></span>
+		                              <label data-error="wrong" data-success="right" for="nUserId"> e-mail : </label><span class="invalid-feedback">*</span>
+		                              <input type="email" class="form-control login-input" th:field="*{email}" title="votre adresse mail électronique" placeholder="Votre adresse mail" id="nUserId" required/>
+		                            <span class="underline"></span>
+		                            <span class="fa fa-times invalid-feedback" th:each="error: ${#fields.errors('email')}" th:text="' '+${error}">Validation error</span>
+		                            </div>
+		                            
+	                            	<div class="form-group">
+	                                	<span class="fa fa-lock prefix"></span> 
+	                                	<label data-error="wrong" data-success="right" for="nUserPwd">Mot de passe : </label>
+	                                	<input type="password" class="form-control login-input" th:field="*{password}" placeholder="Votre mot de passe" autocomplete="off" title="votre mot de passe" id="nUserPwd" required></input>
+	                                	<span class="underline"></span>
+	                                	<span class="fa fa-times invalid-feedback" th:each="error: ${#fields.errors('password')}" th:text="' '+${error}">Validation error</span>
+	                                </div>
+	                                
+	                                <div class="form-group">
+	                                	<span class="fa fa-lock prefix"></span> 
+	                                	<label data-error="wrong" data-success="right" for="nUserPwdCfrm">Confirmation de mot de passe : </label>
+	                                	<input type="password" class="form-control login-input" th:field="*{confirmPassword}" title="confirmation de votre mot de passe" autocomplete="off" placeholder="Rétapez votre mot de passe" id="nUserPwdCfrm" required></input>
+	                                	<span class="underline"></span>
+	                                	<span class="fa fa-times invalid-feedback" th:each="error: ${#fields.errors('confirmPassword')}" th:text="' '+${error}">Validation error</span>
+	                                </div>
+	                                <div th:if="${#fields.hasGlobalErrors()}">
+									  <span class="fa fa-times invalid-feedback" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</span>
+									</div>
+	                                
+	                                <div class="text-center">
+	                                	<button type="submit" class="btn btn-info">Créer votre compte<i class="fa fa-sign-in ml-1"></i></button>
+	                           		</div>
+	                             </form>
+	                           </div>
+                        </div>
+                        <!--Footer-->
+                        <div class="modal-footer">
+                            <div class="options text-right">
+                                <p class="pt-1">Avez vous déjà un compte ? <a href="#" class="blue-text">Connecter</a></p>
+                            </div>
+                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!--/.Panel 8-->
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: Login / Register Form-->
+  <!-- Placed at the end of the document so the pages load faster -->
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body> 
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<div class="container" layout:fragment="myGallery">
+	<div class="row">
+		<div id="freeImgRow" class="row">
+<!--             <div class="col-lg-4 col-md-4 col-xs-6 thumb"> -->
+<!--                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="" -->
+<!--                    data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                    data-target="#image-gallery"> -->
+<!--                     <img class="img-thumbnail" -->
+<!--                          src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                          alt="Another alt text"> -->
+<!--                 </a> -->
+<!--                 <a><span class="fa fa-trash-o pull-left"></span></a> -->
+<!--             </div> -->
+<!--             <div class="col-lg-4 col-md-4 col-xs-6 thumb"> -->
+<!--                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="" -->
+<!--                    data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                    data-target="#image-gallery"> -->
+<!--                     <img class="img-thumbnail" -->
+<!--                          src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                          alt="Another alt text"> -->
+<!--                 </a> -->
+<!--                 <a><span class="fa fa-trash-o pull-left"></span></a> -->
+<!--             </div> -->
+<!-- 			<div class="col-lg-4 col-md-4 col-xs-6 thumb"> -->
+<!--                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="" -->
+<!--                    data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                    data-target="#image-gallery"> -->
+<!--                     <img class="img-thumbnail" -->
+<!--                          src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" -->
+<!--                          alt="Another alt text"> -->
+<!--                 </a> -->
+<!--                 <a><span class="fa fa-trash-o pull-left"></span></a> -->
+<!--             </div> -->
+        </div>
+        <div class="upload-btn-wrapper btn btn-outline-default waves-effect mom-bordered-btn col-12">
+        
+        	<label>
+				<input id="imgFiles" type="file" name="files[]" accept="image/*"  multiple/>
+				 <span class="fa fa-camera"></span>
+    			<span class="photo_text hidden-xs">Ajouter une image</span>
+			</label>
+		</div>
+        <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="image-gallery-title"></h4>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="image-gallery-image" class="img-responsive col-md-12" src="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
+                        </button>
+
+                        <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+<!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<!--  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdIe_qoxjhXhZebieCUyWIiyy6O0k7PkE&libraries=places&sensor=false">
+    </script>
+    <script type="text/javascript" src="../../../resources/static/js/richmarker.js" th:src="@{/resources/static/js/richmarker.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-fr.min.js"></script>
+
+<script type="text/javascript" src="../../../resources/static/js/userProfile.js" th:src="@{/resources/static/js/userProfile.js}"></script>
+<script type="text/javascript" src="../../../resources/static/js/deals.js" th:src="@{/resources/static/js/deals.js}"></script>
+<script type="text/javascript" src="../../../resources/static/js/momMap.js" th:src="@{/resources/static/js/momMap.js}"></script>
+</body> 
+</html>
